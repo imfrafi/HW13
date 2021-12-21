@@ -1,0 +1,64 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guessing Game</title>
+    <link rel="stylesheet" href="myStyle.css">
+
+</head>
+
+<body>
+    <script>
+        var ans = Math.floor( Math.random()*100 );
+        var cl = 100;
+        var fr = 0;
+        var tp = 0;
+        function check(){
+            tp++;
+            var guess = document.getElementById("gs").value;
+            if( guess==ans ){
+                alert( "Boom!" )
+            }
+            else{
+                var x = document.createElement( "div" );
+                x.style.border = "1px rgb(129, 118, 118) solid";
+                x.style.position = "relative";
+                x.style.height = "20px";
+                x.style.width = "170px";
+                x.style.right = "1px";
+                if( tp%2==1 ){
+                    x.style.backgroundColor = "rgb(221, 203, 176)";
+                }
+                else{
+                    x.style.backgroundColor = "rgb(241, 226, 226)";
+                }
+                if( guess>ans ){
+                    cl = guess;
+                }else{
+                    fr = guess;
+                }
+                var t = document.createTextNode( fr + '~' + cl );
+                x.appendChild( t );
+                document.getElementById("rt").appendChild( x );
+            }
+            document.getElementById("gs").value = null;
+            
+            
+        }
+    </script>
+    <div class="bg">
+        <div class="content">
+            <h1>Guessing Game</h1>
+            <p>Your Guess(1~100)</p>
+            <input type="text" id="gs" style="border-radius: 3px;"><br><br>
+            <input type="button" value="play" class="opButton" style="border-radius: 3px;" onclick="check()"><br><br>
+            <div class="result" id="rt">
+                <b>Result</b>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
